@@ -48,7 +48,7 @@ def blit4(dest: np.ndarray, src: np.ndarray, x: int, y: int) -> None:
     dr = dl + sr - sl
     db = dt + sb - st
     m = src[st:sb, sl:sr, 3:4]
-    dest[dt:db, dl:dr] = (dest[dt:db, dl:dr].astype(np.float) * (255 - m) + src[st:sb, sl:sr, 0:3].astype(np.float) * m) / 255
+    dest[dt:db, dl:dr] = (dest[dt:db, dl:dr].astype(np.float64) * (255 - m) + src[st:sb, sl:sr, 0:3].astype(np.float64) * m) / 255
 
 # alpha_blits src onto dest according to the alpha values in mask at location (x, y),
 # ignoring any parts that do not overlap
@@ -62,7 +62,7 @@ def alpha_blit(dest: np.ndarray, src: np.ndarray, mask: np.ndarray, x: int, y: i
     dr = dl + sr - sl
     db = dt + sb - st
     m = mask[st:sb, sl:sr]
-    dest[dt:db, dl:dr] = (dest[dt:db, dl:dr].astype(np.float) * (255 - m) + src[st:sb, sl:sr].astype(np.float) * m) / 255
+    dest[dt:db, dl:dr] = (dest[dt:db, dl:dr].astype(np.float64) * (255 - m) + src[st:sb, sl:sr].astype(np.float64) * m) / 255
 
 # blits a perspective-warped src image onto dest
 def perspective_blit(dest: np.ndarray, src: np.ndarray, transform: np.ndarray) -> None:
